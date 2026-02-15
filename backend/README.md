@@ -19,13 +19,15 @@ npm install
 Create a `.env` file in `backend/`:
 
 ```bash
-DB_NAME=your_database_name
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
+DB_NAME=reservation_db
+DB_USER=reservation_user
+DB_PASSWORD=reservation_pass
 DB_HOST=localhost
 DB_PORT=5432
 PORT=4000
 ```
+
+If you use the provided `docker-compose.yml` at the project root, these values already match the Postgres container configuration.
 
 ## 3. Database migrations
 
