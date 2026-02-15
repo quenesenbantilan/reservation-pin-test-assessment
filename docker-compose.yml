@@ -13,6 +13,29 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  backend:
+    build: ./backend
+    container_name: reservation-backend
+    environment:
+      DB_NAME: reservation_db
+      DB_USER: reservation_user
+      DB_PASSWORD: reservation_pass
+      DB_HOST: db
+      DB_PORT: 5432
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: reservation-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
 volumes:
   db_data:
 

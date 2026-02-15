@@ -27,7 +27,12 @@ export default function ReservationForm() {
     setPin(null);
 
     try {
-      const res = await api.post("/reservations", form);
+      const reservationTimeIso = new Date(form.reservationTime).toISOString();
+
+      const res = await api.post("/reservations", {
+        ...form,
+        reservationTime: reservationTimeIso
+      });
       setPin(res.data.pinCode);
     } catch (err) {
       setError(extractErrorMessage(err));
@@ -41,7 +46,7 @@ export default function ReservationForm() {
       <header className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">New reservation</h1>
         <p className="text-sm text-slate-400">
-          Choose a time, fill in your contact details, and we&apos;ll generate a PIN that becomes
+          Pick a time, fill in your contact details, Ill generate a PIN that becomes
           active 15 minutes before your appointment.
         </p>
       </header>

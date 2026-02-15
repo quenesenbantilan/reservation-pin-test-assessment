@@ -17,59 +17,29 @@ See the dedicated READMEs in each subfolder for details:
 - `backend/README.md`
 - `frontend/README.md`
 
-## Quick start
+## Quick start (Docker – whole app)
 
-### 1. Backend
+The easiest way to run the whole stack (Postgres + backend + frontend) is via Docker Compose.
 
-1. Navigate to the backend:
-
-   ```bash
-   cd backend
-   ```
-
-2. Install dependencies:
+1. In the project root, build and start all services:
 
    ```bash
-   npm install
+   docker compose up --build
    ```
 
-3. Configure environment variables by creating a `.env` file (see `backend/README.md` for exact keys).
+2. Access the app:
 
-4. Run database migrations:
+   - Frontend: `http://localhost:5173`
+   - Backend API: `http://localhost:4000`
+   - PostgreSQL: `localhost:5432` (inside Docker network it’s reachable as `db`)
 
-   ```bash
-   npm run migrate
-   ```
+To stop everything:
 
-5. Start the backend API:
+```bash
+docker compose down
+```
 
-   ```bash
-   npm run dev
-   ```
-
-The API will be available at `http://localhost:4000` by default.
-
-### 2. Frontend
-
-1. Open a new terminal and go to the frontend:
-
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the frontend dev server:
-
-   ```bash
-   npm run dev
-   ```
-
-The app will start on the Vite dev server (for example `http://localhost:5173`) and will call the backend at `http://localhost:4000` (configurable in `frontend/src/services/api.ts`).
+> Note: if you prefer running things without Docker, see `backend/README.md` and `frontend/README.md` for manual setup (npm install, migrations, etc.).
 
 ## High-level behavior
 
